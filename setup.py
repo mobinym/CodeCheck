@@ -1,5 +1,3 @@
-# setup.py
-
 from setuptools import setup, find_packages
 
 setup(
@@ -9,7 +7,7 @@ setup(
     install_requires=[],
     entry_points={
         'console_scripts': [
-            'aio_check = aio_check.check:main',
+            'AIO_CHECK = aio_check.check:main',
         ],
     },
     author='MOBIN_YM',
