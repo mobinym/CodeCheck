@@ -12,11 +12,11 @@ setup(
             'aio_check = aio_check.check:main',
         ],
     },
-    author='Your Name',
+    author='MOBIN_YM',
     description='A package to evaluate Python code submissions',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/yourusername/AIO_CHECK',
+    url='https://github.com/mobinym/AIO_CHECK',
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
