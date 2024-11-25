@@ -6,20 +6,19 @@ import re
 import time
 import json
 
-# Define test cases
 TEST_CASES = [
     {"input": "2\n", "expected_output": "4\n"},
     {"input": "3\n", "expected_output": "9\n"},
     {"input": "5\n", "expected_output": "25\n"}
 ]
 
-# Scoring weights
+
 CORRECTNESS_WEIGHT = 0.7
 STYLE_WEIGHT = 0.2
 SYNTAX_WEIGHT = 0.1
 FINALIZATION_THRESHOLD = 90
 
-# ANSI color codes for terminal output
+
 class Colors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -29,11 +28,10 @@ class Colors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
 
-# Extract numbers from text
+
 def extract_numbers(text):
     return list(map(int, re.findall(r'\d+', text)))
 
-# Run a single test case
 def run_test_case(script_path, test_case):
     try:
         result = subprocess.run(
@@ -48,7 +46,7 @@ def run_test_case(script_path, test_case):
     except Exception:
         return False
 
-# Check Python syntax
+
 def check_syntax(script_path):
     try:
         subprocess.check_output([sys.executable, "-m", "py_compile", script_path])
@@ -56,12 +54,12 @@ def check_syntax(script_path):
     except subprocess.CalledProcessError:
         return False
 
-# Evaluate code style
+
 def evaluate_style(script):
     issues = []
     score = 100
 
-    # Check variable naming (snake_case)
+    
     variables = re.findall(r'\b([a-zA-Z_][a-zA-Z0-9_]*)\b', script)
     non_snake_case = [var for var in variables if not re.match(r'^[a-z_][a-z0-9_]*$', var)]
     if non_snake_case:
@@ -69,38 +67,38 @@ def evaluate_style(script):
         for var in non_snake_case:
             issues.append(f"Variable '{var}' is not in snake_case.")
 
-    # Check line length
+    
     lines = script.splitlines()
     for i, line in enumerate(lines):
         if len(line) > 79:
-            score -= 2  # Deduct 2 points per long line
+            score -= 2  
             issues.append(f"Line {i + 1} exceeds 79 characters.")
 
     return score, issues
 
-# Perform full evaluation
+
 def judge_code(script_path):
-    # Read the script content
+    
     with open(script_path, 'r') as f:
         script = f.read()
 
-    # Correctness evaluation
+    
     correctness_score = sum(run_test_case(script_path, tc) for tc in TEST_CASES) / len(TEST_CASES) * 100
 
-    # Style evaluation
+    
     style_score, style_issues = evaluate_style(script)
 
-    # Syntax check
+   
     syntax_score = 100 if check_syntax(script_path) else 0
 
-    # Calculate final score
+    
     final_score = (
         correctness_score * CORRECTNESS_WEIGHT +
         style_score * STYLE_WEIGHT +
         syntax_score * SYNTAX_WEIGHT
     )
 
-    # Create detailed feedback
+    
     feedback = {
         "Correctness": round(correctness_score, 2),
         "Style": round(style_score, 2),
@@ -111,7 +109,7 @@ def judge_code(script_path):
     }
     return feedback
 
-# Show a loading animation
+
 def show_loading(message, duration=3):
     print(message, end="", flush=True)
     for _ in range(duration):
@@ -119,7 +117,7 @@ def show_loading(message, duration=3):
         time.sleep(1)
     print()
 
-# Save detailed feedback to a text file
+
 def save_feedback_text(feedback, output_path):
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(f"{'=' * 40}\n")
@@ -150,7 +148,6 @@ def save_feedback_text(feedback, output_path):
         for issue in feedback["Style Issues"]:
             f.write(f"- {issue}\n")
 
-# Main function
 def main():
     parser = ArgumentParser(description="A simple Python code evaluation tool.")
     parser.add_argument("-f", "--file", help="Path to the Python file to evaluate.", required=True)
@@ -163,13 +160,13 @@ def main():
         print(f"{Colors.FAIL}Error: File '{script_path}' does not exist.{Colors.ENDC}")
         sys.exit(1)
 
-    # Display loading animation
+    
     show_loading("Evaluating your code", duration=3)
 
-    # Evaluate the code
+    
     feedback = judge_code(script_path)
 
-    # Display summary feedback in terminal
+    
     print("\nSummary:")
     print(f"Correctness: {feedback['Correctness']}%")
     print(f"Style: {feedback['Style']}%")
@@ -180,13 +177,13 @@ def main():
     else:
         print(f"{Colors.FAIL}Result: Your code failed the evaluation ❌{Colors.ENDC}")
 
-    # Show brief style issues
+    
     if feedback["Style Issues"]:
         print("\nStyle Issues (Summary):")
         for issue in feedback["Style Issues"]:
             print(f"- {Colors.WARNING}{issue}{Colors.ENDC}")
 
-    # Save detailed feedback to TXT file if requested
+    
     if args.output:
         try:
             save_feedback_text(feedback, args.output)
