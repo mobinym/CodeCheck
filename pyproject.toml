@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "AIO-CodeCheck"
+version = "0.1.0"
+description = "AIO-CodeCheck is a comprehensive tool for checking code quality and providing detailed feedback."
+authors = ["Mobin Yaghoobi Moghaddam <yaghoobi.m191@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/mobinym/AIO-CodeCheck"
+keywords = ["code", "quality", "check", "python"]
+packages = [{ include = "aio_check" }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
