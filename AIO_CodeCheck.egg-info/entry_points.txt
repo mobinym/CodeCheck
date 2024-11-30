@@ -1,0 +1,2 @@
+[console_scripts]
+aio-check = aio_check.check:main

@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='AIO_CHECK',
+    name='AIO-CodeCheck',  
     version='0.1',
     packages=find_packages(),
     install_requires=[],
     entry_points={
         'console_scripts': [
-            'AIO_CHECK = aio_check.check:main',
+            'aio-check = aio_check.check:main',  
         ],
     },
     author='MOBIN_YM',

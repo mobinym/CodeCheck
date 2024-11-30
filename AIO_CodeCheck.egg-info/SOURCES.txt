@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+AIO_CodeCheck.egg-info/PKG-INFO
+AIO_CodeCheck.egg-info/SOURCES.txt
+AIO_CodeCheck.egg-info/dependency_links.txt
+AIO_CodeCheck.egg-info/entry_points.txt
+AIO_CodeCheck.egg-info/top_level.txt
+aio_check/__init__.py
+aio_check/check.py

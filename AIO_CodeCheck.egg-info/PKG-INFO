@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: AIO-CodeCheck
+Version: 0.1
+Summary: A package to evaluate Python code submissions
+Home-page: https://github.com/mobinym/AIO_CHECK
+Author: MOBIN_YM
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# AIO_CHECK
+
+AIO_CHECK is a CLI tool that evaluates Python code submissions based on correctness, style, and syntax.
+
+## Installation
+
+To install AIO_CHECK, run:
+
+
+## Usage
+
+Run the following command to evaluate a Python file:
+
+
+This will display feedback on the code's correctness, style, and syntax.
+pip install .
