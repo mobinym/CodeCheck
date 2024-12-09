@@ -1,14 +1,17 @@
 Metadata-Version: 2.1
 Name: AIO-CodeCheck
-Version: 0.2
-Summary: A package to evaluate Python code submissions
-Home-page: https://github.com/mobinym/AIO_CHECK
+Version: 0.5
+Summary: A simple Python code evaluation tool.
+Home-page: https://github.com/mobinym/AIO_CodeCheck
 Author: MOBIN_YM
+Author-email: yaghoobi.m191@gmail.com
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: rich
 
 
 # Python Code Evaluation Tool
